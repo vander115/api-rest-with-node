@@ -4,13 +4,11 @@ import { knex } from './database';
 const app = fastify();
 
 app.get('/hello', async () => {
-  const tables = await knex('sqlite_schema').select('*');
+    const transactions = await knex('transactions').select('*');
 
-  return tables;
+    return transactions;
 });
 
-app
-  .listen({
+app.listen({
     port: 3333,
-  })
-  .then(() => console.log('HTTP Server Running'));
+}).then(() => console.log('HTTP Server Running'));
